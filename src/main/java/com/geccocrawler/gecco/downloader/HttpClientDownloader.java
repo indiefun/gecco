@@ -231,10 +231,10 @@ public class HttpClientDownloader extends AbstractDownloader {
 	}
 	
 	public String getContent(InputStream instream, long contentLength, String charset) throws IOException {
+		if (instream == null) {
+			return null;
+		}
 		try {
-			if (instream == null) {
-	            return null;
-	        }
 	        int i = (int)contentLength;
 	        if (i < 0) {
 	            i = 4096;
@@ -250,7 +250,6 @@ public class HttpClientDownloader extends AbstractDownloader {
 		} finally {
 			instream.reset();
 		}
-        
     }
 	
 	private boolean isImage(String contentType) {
