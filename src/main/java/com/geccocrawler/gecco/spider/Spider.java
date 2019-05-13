@@ -123,7 +123,7 @@ public class Spider implements Runnable {
 				// 如果使用代理无效，重新加入队列换其他代理再次抓取
 				if(ex instanceof DownloadTimeoutException) {
 					//开启代理，并且获取代理不为null
-					if(engine.isProxy() && engine.getProxysLoader().getProxy() != null) {
+					if(engine.isProxy()) {
 						log.debug(request.getUrl()+" ERROR : connect time out, again insert to  scheduler!");
 						spiderScheduler.into(request);
 					}
